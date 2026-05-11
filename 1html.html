@@ -1,0 +1,315 @@
+
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dei V | Web Oficial Educativa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/eb496ab13c.js" crossorigin="anonymous"></script>
+    
+    <style>
+        :root {
+            --verde-deiv: #ccdfa3;
+            --azul-oscuro: #2c3e50;
+            --gris-claro: #f0f2f5;
+            --blanco: #ffffff;
+        }
+
+        body {
+            background-color: var(--gris-claro);
+                        background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5v10M15 15l7 7M5 30h10M15 45l7-7M30 55V45M45 45l-7-7M55 30H45M45 15l-7 7' stroke='%23ccdfa3' stroke-width='1' fill='none' opacity='0.3'/%3E%3C/svg%3E");
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        header {
+            background-color: var(--blanco);
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom: 6px solid var(--verde-deiv);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            position: relative;
+        
+        }
+       
+        header h1 {
+            font-size: 3.5rem;
+            margin: 0;
+            color: var(--azul-oscuro);
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+
+        header p { margin-top: 10px; font-weight: bold; }
+
+        .main-wrapper {
+            max-width: 1100px;
+            margin: 40px auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            padding: 0 20px;
+        }
+
+        .bio-section {
+            background: var(--blanco);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
+
+
+        .bio-image-placeholder {
+            width: 100%;
+            height: 300px; 
+            background: var(--azul-oscuro);
+            
+
+            background-image: url('');
+            background-size: cover;
+            background-position: center;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+            margin-bottom: 20px;
+            border: 3px solid var(--verde-deiv);
+        }
+
+        .bio-section h2 {
+            color: var(--azul-oscuro);
+            border-bottom: 3px solid var(--verde-deiv);
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .bio-section p {
+            line-height: 1.8;
+            font-size: 1rem;
+            color: #555;
+        }
+
+        .data-tag {
+            display: inline-block;
+            background: var(--gris-claro);
+            padding: 8px 15px;
+            border-radius: 50px;
+            margin: 5px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: var(--azul-oscuro);
+            border: 1px solid #ddd;
+        }
+
+        .quiz-section {
+            background: var(--blanco);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            border: 2px solid var(--verde-deiv);
+        }
+
+        .question-card {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            transition: 0.3s;
+        }
+
+        .option-item {
+            display: block;
+            margin: 8px 0;
+            padding: 10px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .option-item:hover { border-color: var(--verde-deiv); transform: translateX(5px); }
+
+        .correct { background-color: #d4edda !important; border-color: #28a745 !important; color: #155724; }
+        .incorrect { background-color: #f8d7da !important; border-color: #dc3545 !important; color: #721c24; }
+
+        .btn-container { display: flex; gap: 10px; margin-top: 20px; }
+        .btn { flex: 1; padding: 15px; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; text-transform: uppercase; transition: 0.3s; }
+        .btn-send { background-color: var(--azul-oscuro); color: white; }
+        .btn-send:hover { background-color: #000; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        .btn-reset { background-color: #e74c3c; color: white; }
+
+        #toast {
+            visibility: hidden;
+            min-width: 300px;
+            background-color: var(--azul-oscuro);
+            color: #fff;
+            text-align: center;
+            border-radius: 12px;
+            padding: 20px;
+            position: fixed;
+            z-index: 1000;
+            left: 50%;
+            bottom: 30px;
+            transform: translateX(-50%);
+            font-weight: bold;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border: 2px solid var(--verde-deiv);
+        }
+
+        #toast.show { visibility: visible; animation: fadein 0.5s; }
+
+        @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
+
+        @media (max-width: 900px) { .main-wrapper { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="eq-visual">
+        <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+        <div class="bar"></div><div class="bar"></div>
+    </div>
+    <h1>DEI V</h1>
+    <p><i class="fas fa-microphone-lines" style="color:var(--verde-deiv)"></i> CAROLINA, PUERTO RICO | THE FLAVOR</p>
+</header>
+
+<div id="toast"></div>
+
+<div class="main-wrapper">
+    
+    <section class="bio-section">
+        <div class="bio-image-placeholder">
+            <iframe width="532.5" height="297.5" src="[DLBunny.com][merged]2026-5-5-10-10-14.mp4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <h2>Biografía Detallada</h2>
+        <p>
+            <strong>David Gerardo Rivera Juarbe</strong>, artísticamente conocido como <strong>Dei V</strong>, es una de las figuras más prominentes del género urbano actual. Nacido el 27 de diciembre de 1995, ha sabido conquistar la escena internacional con un estilo que él denomina como versátil y lleno de "flavor".
+        </p>
+        <p>
+            Su ascenso se consolidó con colaboraciones junto a grandes como <strong>Karol G</strong> y su presencia en festivales de todo el mundo. Se distingue por su frase "Under Water" y su capacidad para fluir tanto en Trap como en Reggaetón.
+        </p>
+        <a href="discografia.html" style="color: var(--azul-oscuro); font-weight: bold;">Ver Discografía Completa →</a>
+
+        <h3>Datos Clave:</h3>
+        <div class="data-tag"><i class="fas fa-location-dot"></i> Origen: Carolina, PR</div>
+        <div class="data-tag"><i class="fas fa-music"></i> Estilo: Trap / Urbano</div>
+        <div class="data-tag"><i class="fas fa-water"></i> Lema: Under Water</div>
+        <div class="data-tag"><i class="fas fa-calendar"></i> Año: 1995</div>
+<div class="audio-player-container">
+    <h4><i class="fas fa-play-circle"></i> Escucha su música</h4>
+ <strong>SUELTA GATITA SUELTA</strong> <Br>
+    <audio controls>
+        <source src="OMAR COURTZ (((ousi))), Dei V, Clarent - UELTA GATITA UELTA (Visualizer).mp3" type="audio/mpeg">
+        Tu navegador no soporta el audio.
+    </audio>
+<Br><strong> NYX00</strong> <Br>
+ <audio controls>
+        <source src="No confirmat 902712.crdownload" type="audio/mpeg">
+        Tu navegador no soporta el audio.
+    </audio>
+
+</div>
+
+    </section>
+
+    <section class="quiz-section">
+        <h2><i class="fas fa-tasks"></i> Cuestionario</h2>
+        
+        <form id="quizForm">
+            <div class="question-card">
+                <p>1. ¿Cuál es su profesión principal?</p>
+                <label class="option-item"><input type="radio" name="p1" value="Cantante" required> Cantante y Compositor</label>
+                <label class="option-item"><input type="radio" name="p1" value="Actor"> Actor de doblaje</label>
+            </div>
+
+            <div class="question-card">
+                <p>2. ¿Cómo se titula su éxito principal?</p>
+                <label class="option-item"><input type="radio" name="p2" value="Quien es dei v" required> ¿Quién es Dei V?</label>
+                <label class="option-item"><input type="radio" name="p2" value="Right Thru"> Right Thru</label>
+                <label class="option-item"><input type="radio" name="p2" value="VeLDÁ"> VeLDÁ</label>
+                <label class="option-item"><input type="radio" name="p2" value="Narcotics"> Narcotics (with Bryant Myers)</label>
+            </div>
+
+            <div class="question-card">
+                <p>3. Edad actual (Año 2026):</p>
+                <label class="option-item"><input type="radio" name="p3" value="28"> 28 años</label>
+                <label class="option-item"><input type="radio" name="p3" value="30"> 30 años</label>
+                <label class="option-item"><input type="radio" name="p3" value="29"> 29 años</label>
+                <label class="option-item"><input type="radio" name="p3" value="31"> 31 años</label>
+            </div>
+
+            <div class="btn-container">
+                <button type="button" class="btn btn-send" onclick="validarQuiz()">Validar Respuestas</button>
+                <button type="reset" class="btn btn-reset" onclick="resetearEstilos()">Borrar</button>
+            </div>
+        </form>
+    </section>
+
+</div>
+
+<footer style="text-align: center; padding: 20px; color: #888; font-size: 0.8rem;">
+    &copy; 2026 Web Oficial Dei V - Proyecto Educativo para EPIA Granollers.
+</footer>
+
+<script>
+    function validarQuiz() {
+        const respuestasCorrectas = {
+            p1: "Cantante",
+            p2: "VeLDÁ",
+            p3: "30"
+        };
+
+        let aciertos = 0;
+        let total = 3;
+
+        for (let i = 1; i <= total; i++) {
+            const name = "p" + i;
+            const opciones = document.getElementsByName(name);
+            let seleccionada = "";
+
+            opciones.forEach(radio => {
+                const label = radio.parentElement;
+                label.classList.remove('correct', 'incorrect');
+
+                if (radio.checked) {
+                    seleccionada = radio.value;
+                    if (radio.value === respuestasCorrectas[name]) {
+                        label.classList.add('correct');
+                        aciertos++;
+                    } else {
+                        label.classList.add('incorrect');
+                    }
+                } else if (radio.value === respuestasCorrectas[name]) {
+                    label.classList.add('correct');
+                }
+            });
+
+            if (seleccionada === "") {
+                alert("Por favor, responde la pregunta " + i);
+                return;
+            }
+        }
+
+        const porcentaje = Math.round((aciertos / total) * 100);
+        const toast = document.getElementById("toast");
+        toast.innerHTML = `<i class="fas fa-chart-pie"></i> HAS ACERTADO EL ${porcentaje}% <br> <small>${aciertos} de ${total} correctas</small>`;
+        toast.className = "show";
+        setTimeout(() => { toast.className = toast.className.replace("show", ""); }, 4000);
+    }
+
+    function resetearEstilos() {
+        document.querySelectorAll('.option-item').forEach(el => {
+            el.classList.remove('correct', 'incorrect');
+        });
+        document.getElementById("toast").className = "";
+    }
+
+</script>
+</body>
+</html>
